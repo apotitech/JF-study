@@ -8,16 +8,7 @@ pipeline {
                     // Define the Docker image name and tag
                     def imageName = 'my-centos-webapp' // apotieri/my-centos-webapp
                     def imageTag = 'latest'
-
-                    // Create a Dockerfile
-                    writeFile file: 'Dockerfile', text: '''
-                        FROM centos:7
-                        RUN yum update -y
-                        RUN yum install -y finger httpd
-                        EXPOSE 80
-                        CMD ["httpd", "-D", "FOREGROUND"]
-                    '''
-
+                    
                     // Build the Docker image
                     sh "docker build -t ${imageName}:${imageTag} ."
                 }
